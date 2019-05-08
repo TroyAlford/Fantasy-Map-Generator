@@ -2,7 +2,7 @@
 "use strict";
 
 // ask before closing the window
-window.onbeforeunload = () => "Are you sure you want to navigate away?";
+// window.onbeforeunload = () => "Are you sure you want to navigate away?";
 
 // fit full-screen map if window is resized
 $(window).resize(function(e) {
@@ -160,18 +160,18 @@ function getFriendlyPrecipitation(i) {
 // get user-friendly (real-world) population value from map data
 function getFriendlyPopulation(i) {
   const rural = pack.cells.pop[i] * populationRate.value;
-  const urban = pack.cells.burg[i] ? pack.burgs[pack.cells.burg[i]].population * populationRate.value * urbanization.value : 0;  
+  const urban = pack.cells.burg[i] ? pack.burgs[pack.cells.burg[i]].population * populationRate.value * urbanization.value : 0;
   return si(rural+urban);
 }
 
-// assign lock behavior  
+// assign lock behavior
 document.querySelectorAll("[data-locked]").forEach(function(e) {
   e.addEventListener("mouseover", function(event) {
     if (this.className === "icon-lock") tip("Click to unlock the option and allow it to be randomized on new map generation");
     else tip("Click to lock the option and always use the current value on new map generation");
     event.stopPropagation();
   });
-  
+
   e.addEventListener("click", function(event) {
     const id = (this.id).slice(5);
     if (this.className === "icon-lock") unlock(id);
@@ -182,13 +182,13 @@ document.querySelectorAll("[data-locked]").forEach(function(e) {
 // lock option
 function lock(id) {
   const input = document.querySelector("[data-stored='"+id+"']");
-  if (input) localStorage.setItem(id, input.value);  
+  if (input) localStorage.setItem(id, input.value);
   const el = document.getElementById("lock_" + id);
   if(!el) return;
   el.dataset.locked = 1;
   el.className = "icon-lock";
 }
- 
+
 // unlock option
 function unlock(id) {
   localStorage.removeItem(id);
@@ -207,7 +207,7 @@ function locked(id) {
 // Hotkeys, see github.com/Azgaar/Fantasy-Map-Generator/wiki/Hotkeys
 document.addEventListener("keydown", function(event) {
   const active = document.activeElement.tagName;
-  if (active === "INPUT" || active === "SELECT" || active === "TEXTAREA") return; // don't trigger if user inputs a text 
+  if (active === "INPUT" || active === "SELECT" || active === "TEXTAREA") return; // don't trigger if user inputs a text
   const key = event.keyCode, ctrl = event.ctrlKey, shift = event.shiftKey;
   if (key === 118) regenerateMap(); // "F7" for new map
   else if (key === 27) {closeDialogs(); hideOptions();} // Escape to close all dialogs
