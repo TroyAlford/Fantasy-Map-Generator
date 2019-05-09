@@ -1155,7 +1155,7 @@ function showStatistics() {
   console.log(stats);
 }
 
-const regenerateMap = debounce(function() {
+window.regenerateMap = debounce(function() {
   closeDialogs("#worldConfigurator");
   customization = 0;
   undraw();
