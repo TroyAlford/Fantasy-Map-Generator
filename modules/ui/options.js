@@ -924,7 +924,9 @@ document.getElementById("sticked").addEventListener("click", function(event) {
 
 function regeneratePrompt() {
   if (customization) {tip("Please exit the customization mode first", false, "warning"); return;}
-  const workingTime = (Date.now() - last(mapHistory).created) / 60000; // minutes
+  const mostRecentHistory = last(mapHistory)
+  const created = mostRecentHistory ? mostRecentHistory.created : 0
+  const workingTime = (Date.now() - created) / 60000; // minutes
   if (workingTime < 15) {regenerateMap(); return;}
 
   alertMessage.innerHTML = `Are you sure you want to generate a new map?<br>
