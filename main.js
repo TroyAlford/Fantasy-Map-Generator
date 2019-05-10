@@ -1155,7 +1155,7 @@ function showStatistics() {
   console.log(stats);
 }
 
-window.regenerateMap = debounce(function() {
+window.regenerateMap = debounce(function(callback = function() {}) {
   closeDialogs("#worldConfigurator");
   customization = 0;
   undraw();
@@ -1163,6 +1163,7 @@ window.regenerateMap = debounce(function() {
   generate();
   restoreLayers();
   if ($("#worldConfigurator").is(":visible")) editWorld();
+  callback()
 }, 500);
 
 // Clear the map
