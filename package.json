@@ -1,5 +1,5 @@
 {
-  "name": "fantasy-map-generator",
+  "name": "@azgaar/fantasy-map-generator",
   "version": "0.8.19",
   "description": "Fantasy Map Generator and Editor based on Voronoi diagram",
   "main": "main.js",
